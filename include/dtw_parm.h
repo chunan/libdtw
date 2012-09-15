@@ -6,7 +6,7 @@
 #include <vector>
 #include "segtree.h"
 #include "feature.h"
-#include "ugoc_utility.h"
+#include "utility.h"
 
 
 namespace DtwUtil {

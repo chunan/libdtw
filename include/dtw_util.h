@@ -6,7 +6,7 @@
 #include <cmath>
 #include "thread_util.h"
 #include "std_common.h"
-#include "ugoc_utility.h"
+#include "utility.h"
 #include "dtw_parm.h"
 
 #define float_inf std::numeric_limits<float>::infinity()
