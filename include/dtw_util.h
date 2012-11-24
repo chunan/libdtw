@@ -290,6 +290,8 @@ namespace DtwUtil {
       virtual void ThreewayBestScore(int q, int d);
       virtual void TwowayDallBestScore(int q, int d);
       virtual void TwowayQallBestScore(int q, int d);
+    private:
+      virtual void CalScoreTable() { assert(false); }
   };/*}}}*/
 
 

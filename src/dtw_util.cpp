@@ -21,12 +21,16 @@ namespace DtwUtil {
     VectorDistFn phi_fn = euclinorm;
     if (ext.compare("gp") == 0) {
       phi_fn = innernorm;
+      cout << "innernorm\n";
     } else if (ext.compare("mfc") == 0) {
       phi_fn = euclinorm;
+      cout << "euclinorm\n";
     } else if (ext.compare("fbank") == 0) {
       phi_fn = euclinorm;
+      cout << "euclinorm\n";
     } else if (ext.compare("plp") == 0) {
       phi_fn = euclinorm;
+      cout << "euclinorm\n";
     } else {
       cerr << "unknown file extension: " << ext 
         << ", use euclinorm()\n";
@@ -1072,8 +1076,11 @@ namespace DtwUtil {
       int n_not_found = 0;
 
       /* push distance zero for each sidx < (*num_prf_)[qidx] */
-      for (unsigned pidx = 0; pidx < (*num_prf_)[qidx]; ++pidx)
+      for (unsigned pidx = 0;
+           pidx < (*num_prf_)[qidx] && pidx < output_dist_[qidx].size();
+           ++pidx) {
         output_dist_[qidx][pidx][pidx].push_back(0.0);
+      }
 
       /* for each snippet in qidx list */
       for (unsigned sidx = 0; sidx < (*candidates_)[qidx].size(); ++sidx) {
