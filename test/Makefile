@@ -5,7 +5,7 @@ MACHINE = $(shell uname -m)
 LDFLAGS = -ldtw \
 					-lfeature \
 					-lsegtree \
-					-lugoc_utility
+					-lutility
 
 LDPATH = -L /home/ugoc/lib
 

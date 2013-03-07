@@ -18,7 +18,7 @@ int main() {
   q_parm.LoadParm(q_fname);
   d_parm.LoadParm(d_fname);
   SlopeConDtwRunner scdtw_runner(DtwUtil::euclinorm);
-  FrameDtwRunner::nsnippet_ = 10;
+  FrameDtwRunner::nsnippet_ = 5;
   vector<float> hypo_score;
   vector<pair<int, int> > hypo_bound;
   scdtw_runner.InitDtw(&hypo_score,
@@ -48,7 +48,7 @@ int main() {
   q_parm.LoadParm(q_fname, bseg_ratio, superseg_ratio, width, gran, "");
   d_parm.LoadParm(d_fname, bseg_ratio, superseg_ratio, width, gran, "");
   SegDtwRunner segdtw_runner(DtwUtil::euclinorm);
-  SegDtwRunner::nsnippet_ = 10;
+  SegDtwRunner::nsnippet_ = 5;
   segdtw_runner.InitDtw(&hypo_score,
                        &hypo_bound, /* (start, end) basic segment */
                        NULL, /* do not backtracking */
@@ -62,7 +62,10 @@ int main() {
   for (unsigned i = 0; i < num_hypo; ++i) {
     cout << "hypothesized region[" << i << "]: score = " << hypo_score[i]
       << ", time span = (" << hypo_bound[i].first
-      << ", " << hypo_bound[i].second << ")\n";
+      << ", " << hypo_bound[i].second << ")"
+      << " in frame = (" << d_parm.BasicSegStartT(hypo_bound[i].first) << ", "
+      << d_parm.BasicSegEndT(hypo_bound[i].second) << ")\n";
+
   }
 
 
