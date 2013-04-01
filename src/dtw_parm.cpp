@@ -109,12 +109,10 @@ namespace DtwUtil {
     if (!m_treefname.empty()) printf("  m_treefname = %s\n", m_treefname.c_str());
     printf("PARAMETER:\n");
     printf("  m_gran = %d\n m_width = %d\n", m_gran, m_width);
-    /*
-       printf("DATA:m_feat\n");
-       m_feat.DumpData();
-       printf("DATA:m_segtree\n");
-       m_segtree.DumpData();
-       */
+    //printf("DATA:m_feat\n");
+    //m_feat.DumpData();
+    printf("DATA:m_segtree\n");
+    m_segtree.DumpData();
     printf("DATA:basic segment\n");
     for (unsigned i = 0; i < m_index.size(); i++) {
       printf("  basic_seg[%d](m_segtree idx = %d): %d ~ %d\n",
@@ -129,6 +127,19 @@ namespace DtwUtil {
       }
     }
     printf("} (%d/%d)\n", segmean_count, m_segtree.NumIntNode());
+    printf("DATA:m_subseg: {\n");
+    for (size_t w = 0; w < m_subseg.size(); ++w) {
+      printf("  <width = %d>:\n", w + 1);
+      for (size_t s = 0; s < m_subseg[w].size(); ++s) {
+        printf("   m_subseg[%d][%d] = (", w, s);
+        for (size_t g = 0; g < m_subseg[w][s].size(); ++g) {
+          printf(" %d", m_subseg[w][s][g]);
+        }
+        printf(")\n");
+      }
+    }
+    printf("}\n");
+
   }/*}}}*/
 
   void DtwParm::SplitSuperSeg(deque<int> *seg,/*{{{*/
@@ -214,6 +225,8 @@ namespace DtwUtil {
     /*}}}*/
 
     /* Allocate m_subseg & m_subfrac *//*{{{*/
+    m_subseg.clear();
+    m_subfrac.clear();
     m_subseg.resize(m_width);
     m_subfrac.resize(m_width);
 
