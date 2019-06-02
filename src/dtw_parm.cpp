@@ -129,9 +129,9 @@ namespace DtwUtil {
     printf("} (%d/%d)\n", segmean_count, m_segtree.NumIntNode());
     printf("DATA:m_subseg: {\n");
     for (size_t w = 0; w < m_subseg.size(); ++w) {
-      printf("  <width = %d>:\n", w + 1);
+      printf("  <width = %lu>:\n", w + 1);
       for (size_t s = 0; s < m_subseg[w].size(); ++s) {
-        printf("   m_subseg[%d][%d] = (", w, s);
+        printf("   m_subseg[%lu][%lu] = (", w, s);
         for (size_t g = 0; g < m_subseg[w][s].size(); ++g) {
           printf(" %d", m_subseg[w][s][g]);
         }
